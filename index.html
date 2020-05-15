@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,8 @@
     <link rel="stylesheet" href="reset.css.css">
 
     <!-- Add in Bootstrap-->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- Add in the CSS file-->
     <link rel="stylesheet" href="style.css">
@@ -17,10 +19,24 @@
     <!-- jQuery link-->
     <script src="https://code.jquery.com/jquery.js"></script>
 </head>
+
+<!-- Body HTML begins here-->
 <body>
+    
     <div id="container">
         <h2>Coding Quiz: Developers</h2>
-        <div id="start">Start Quiz!</div>
+        
+        <p>Hi.</p> 
+        <p>You are about to begin the developer's quiz. You will have <strong>90 seconds</strong> to complete this 5 question quiz. 
+            With every correct answer, you will move to the next question.
+            With every wrong answer, <strong>10 seconds will be duducted</strong> from the time bank.</p>
+        <p>Take a breathe, then click <strong>'Start Quiz!'</strong> to begin. Good luck.
+            <button id="startBtn" type="button" class="btn btn-primary">
+                Start Quiz
+            </button>
+        </p>
+    
+        <!-- <div id="start">Start Quiz!</div> -->
         <div id="quiz" style="display: none">
             <!-- Going to try and make the answers and question broad and blank, but fill it in with the Javasript-->
             <div id="question"></div>
@@ -30,10 +46,17 @@
                 <div class="answer" id="C" onclick="checkAnswer('C')"></div>
                 <div class="answer" id="D" onclick="checkAnswer('D')"></div>
             </div>
+            <div id="timer">
+                <div id="counter"></div>
+                <div id="btimeGauge"></div>
+                <div id="timeGauge"></div>
+            </div>
+            <div id="progress"></div>
+        </div>
+        <div id="scoreContainer" style="display: none"></div>
     </div>
       <script src="script.js"></script>
     
-
     <!--
         Needs List
         1) Heading stating that this is a quiz
