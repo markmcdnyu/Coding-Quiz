@@ -1,4 +1,21 @@
-//select the elements
+//Select the elements
+let answerA = document.querySelector("#answerA");
+let answerB = document.querySelector("#answerB");
+let answerC = document.querySelector("#answerC");
+let answerD = document.querySelector("#answerD");
+let startButton = document.getElementById("start");
+
+
+//Declare variables
+
+//Will use this to track the questions left in the quiz
+let i = 0;
+
+//Track the seconds remaining 
+let secondsRemain = 90;
+
+//Used to store the seconds remaining in the quiz
+let interval = 0;
 
 
 
@@ -43,11 +60,9 @@ let questions = [
     ]
 ];
 
-//declare global veriables
-
-
 
 //Need a function to load the question
+
 
 
 //Need a check answer function 
