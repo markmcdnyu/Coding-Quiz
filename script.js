@@ -13,7 +13,7 @@ var quizCard = document.querySelector("#quizCard");
 //Declare variables
 
 //Will use this to track the questions left in the quiz
-var i = 0;
+var round = 0;
 
 //Track the seconds remaining 
 var secondsRemain = 90;
@@ -66,27 +66,35 @@ var questions = [
 ];
 
 //Need a function to show the questions
-function showQuestion(index) {
-    questionDiv.innerHTML = questions [index][0];
-    answerA.value = questions[index][1];
-    answerB.value = questions[index][2];
-    answerC.value = questions[index][3];
-    answerD.value = questions[index][4];
+function showQuestion(round) {
+    questionDiv.innerHTML = questions [round][0];
+    answerA.value = questions[round][1];
+    answerB.value = questions[round][2];
+    answerC.value = questions[round][3];
+    answerD.value = questions[round][4];
 }
 
 //Need a check answer function 
-function checkAnswers (index) {
+function checkAnswers (round) {
     var select = "";
-    if (index === 1) {
+    if (round === 1) {
         select = answerA;
-    } else if (index === 2) {
+    } else if (round === 2) {
         select = answerB;
-    } else if (index === 3) {
+    } else if (round === 3) {
         select = answerC;  
     } else {
         select = answerD;
     }
-    ///have to do more here for the -10 seconds wrong answers
+    console.log(select);
+    if (select.value === questions[round][5]) {
+        //score
+    } else {
+        secondsRemain = secondsRemain -10;
+    }
+    round++;
+    showQuestion(round); 
+    //end showquestion after everything is finished 
 }
 
 //Need a function to start the quiz and start the timer countdown in the nav bar
@@ -105,7 +113,7 @@ function beginQuiz(){
     beginDiv.classList.toggle("collapse");
     quizCard.classList.toggle("collapse");
     activeDiv = quizCard;
-    showQuestion(i);
+    showQuestion(round);
 }
 
 
