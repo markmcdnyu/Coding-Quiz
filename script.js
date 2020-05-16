@@ -4,6 +4,8 @@ let answerB = document.querySelector("#answerB");
 let answerC = document.querySelector("#answerC");
 let answerD = document.querySelector("#answerD");
 let startButton = document.getElementById("start");
+let beginDiv = document.querySelector("#instructions");
+let questionDiv = document.querySelector("#question");
 
 
 //Declare variables
@@ -16,8 +18,6 @@ let secondsRemain = 90;
 
 //Used to store the seconds remaining in the quiz
 let interval = 0;
-
-
 
 // Quiz questions and answers. Trying an array for everything.
 let questions = [
