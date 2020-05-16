@@ -1,45 +1,53 @@
+//select the elements
 
 
 
-// Quiz questions. Trying an array for everything, and making the answers and questions strings of that array
+// Quiz questions and answers. Trying an array for everything.
 let questions = [
-    {
-        question:"Question 1:  What is the corect top-line of an HTML file?",
-        answerA: "<!DOCUMENTTYPE html>",
-        answerB: "<!DOCTYPE html>",
-        answerC: "<!DOCTYPE CSS>",
-        answerD: "<DOCtype html>",
-        correct: "B"
+    [
+        "Question 1:  What is the corect top-line of an HTML file?",
+        "A. <!DOCUMENTTYPE html>",
+        "B. <!DOCTYPE html>",
+        "C. <!DOCTYPE CSS>",
+        "D. <DOCtype html>",
+        "B. <!DOCTYPE html>",
 
-    },{
-        question:"Question 2:  What does CSS stand for?",
-        answerA: "Cascading Style Sheets",
-        answerB: "Customized Style Sheets",
-        answerC: "Central Stagnant Section",
-        answerD: "Clear Symbol System",
-        correct: "A"
-    },{
-        question:"Question 3:  What is the correct syntax for declaring an empty array 'a' in Javascript?",
-        answerA: "a = [];",
-        answerB: "let array = ();",
-        answerC: "let a = [];",
-        answerD: "Array = [empty];",
-        correct: "C"
-    },{
-        question:"Question 4:  Inside which HTML element do we put the JavaScript?",
-        answerA: "<script>",
-        answerB: "<js>",
-        answerC: "<scripting>",
-        answerD: "<javascript>",
-        correct: "A"
-    },{
-        question:"Question 5:  How do you create a function in JavaScript called myFunction?",
-        answerA: "function:myFunction",
-        answerB: "function = myFunction()",
-        answerC: "function myFunction()",
-        answerD: "myFunction = function",
-        correct: "C"
-    }
+    ],[
+        "Question 2:  What does CSS stand for?",
+        "A. Cascading Style Sheets",
+        "B. Customized Style Sheets",
+        "C. Central Stagnant Section",
+        "D. Clear Symbol System",
+        "A. Cascading Style Sheets",
+    ],[
+        "Question 3:  What is the correct syntax for declaring an empty array 'a' in Javascript?",
+        "A. a = [];",
+        "B. let array = ();",
+        "C. let a = [];",
+        "D. Array = [empty];",
+        "C. let a = [];",
+    ],[
+        "Question 4:  Inside which HTML element do we put the JavaScript?",
+        "A. <script>",
+        "B. <js>",
+        "C. <scripting>",
+        "D. <javascript>",
+        "A. <script>",
+    ],[
+        "Question 5:  How do you create a function in JavaScript called myFunction?",
+        "A. function:myFunction",
+        "B. function = myFunction()",
+        "C. function myFunction()",
+        "D. myFunction = function",
+        "B. function myFunction()",
+    ]
 ];
+
+//declare global veriables
+
+
+
+//Need a function to load the question
+
 
 //Need a check answer function 

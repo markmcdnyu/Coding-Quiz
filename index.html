@@ -45,24 +45,38 @@
             </button>
         </p>
     
-        <!-- <div id="start">Start Quiz!</div> -->
-        <div id="quiz" style="display: none">
-            <!-- Going to try and make the answers and question broad and blank, but fill it in with the Javasript-->
-            <div id="question"></div>
-            <div id="choices">
-                <div class="answer" id="A" onclick="checkAnswer('A')"></div>
-                <div class="answer" id="B" onclick="checkAnswer('B')"></div>
-                <div class="answer" id="C" onclick="checkAnswer('C')"></div>
-                <div class="answer" id="D" onclick="checkAnswer('D')"></div>
+        <!-- Content of the quiz and answers section-->
+        <div id="quizCard" class="collapse px-3 py-3">
+            <!-- Row for the question to be inserted-->
+            <div class="row">
+                <h3 id="question">
+                    Placeholder for the ability to insert a question.
+                </h3>
             </div>
-            <div id="timer">
-                <div id="counter"></div>
-                <div id="btimeGauge"></div>
-                <div id="timeGauge"></div>
+        <!-- Here is the place for the answers to be inserted-->
+            <div class="row" id="answers">
+                <div class="btn btn-primary mb-3 mt-3"
+                    type="button" 
+                    value=choice1
+                    id="answerA" >
+                </div>
+                <div class="btn btn-primary mb-3"
+                    type="button"
+                    value=choice2
+                    id="answerB" >
+                </div>
+                <div class="btn btn-primary mb-3 mt-3"
+                    type="button"
+                    value=choice3
+                    id="answerC" >
+                </div>
+                <div class="btn btn-primary mb-3 mt-3"
+                    type="button"
+                    value=choice4
+                    id="answerD" >
+                </div>
             </div>
-            <div id="progress"></div>
         </div>
-        <div id="scoreContainer" style="display: none"></div>
     </div>
       <script src="script.js"></script>
     
