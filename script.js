@@ -60,9 +60,17 @@ let questions = [
     ]
 ];
 
+//Need a function to start the quiz
+function beginQuiz(){
+
+}
 
 //Need a function to load the question
+function showQuestion() {
 
-
+}
 
 //Need a check answer function 
+function checkAnswers () {
+    
+}
