@@ -25,8 +25,8 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
 ```
-The following animation demonstrates the application functionality:
-![code quiz](./Assets/04-web-apis-homework-demo.gif)
+The following picture shows the home page of the application:
+![code quiz](assets/CodingQuizHome.png)
 
 ### Review
 You are required to submit the following for review:
