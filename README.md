@@ -1,12 +1,9 @@
 # Coding Quiz
-As I proceed in my career as a web developer, I will be asked to complete some kind of coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. I built a timed code quiz with multiple-choice questions. This app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code. It also features a clean and polished user interface and is responsive, ensuring that it adapts to multiple screen sizes.
-<p>
-<a href="https://markmcdnyu.github.io/Coding-Quiz/" target="_blank">Coding Quiz</a>
-</p>
+As I proceed in my career as a web developer, I will be asked to complete some kind of coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. I built a timed code quiz with multiple-choice questions. This app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code. It also features a clean and polished user interface and is responsive, ensuring that it adapts to multiple screen sizes. <a href="https://markmcdnyu.github.io/Coding-Quiz/" target="_blank">Coding Quiz Link</a>
 
 ## User Story
 ```
-AS a coding  student
+AS a coding student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
 ```
