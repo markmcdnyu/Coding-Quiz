@@ -16,8 +16,6 @@
 
         <!-- Add in the CSS file-->
         <link rel="stylesheet" href="style.css">
-
-        
     </head>
 
     <!-- Body HTML begins here-->
@@ -29,10 +27,10 @@
                 <div id="time" class="text-dark">90</div>
             </div>
             <div>
-                Score: <span class="navbar-brand mb-0 h1">00</span>
+                Score: <span id="score" class="navbar-brand mb-0 h1">0</span>
             </div>
         </nav>
-
+        <!--Main container-->
         <div class="container">
             <!-- Give a row of space -->
             <div class="row mt-10"></div>
@@ -63,7 +61,7 @@
                         <!-- Row for the question to be inserted-->
                         <div class="row">
                             <h3 id="question">
-                                Placeholder for the ability to insert a question.
+                                Placeholder for questions.
                             </h3>
                         </div>
                         <!-- Here is the place for the answers to be inserted-->
@@ -98,25 +96,84 @@
                                         id="answerD"/>
                                 </li>
                             </ul>
+                        </div>
                     </div>
+                    <!--Quiz is finished score card-->
+                    <div id=scorecard class="mt-4 mb-4 px-3 px-y collapse">
+                        <h3>FINISHED!</h3>
+                        <!-- score will be auto populated here -->
+						<form class="form-inline">
+							<div class="form-group mb-2">
+								<input
+									type="text"
+									readonly
+									class="form-control-plaintext"
+									value="Your final score is:"
+								/>
+							</div>
+							<div class="form-group mx-sm-3 mb-2" id="finalScore"></div>
+						</form>
+						<!-- initials entered here -->
+						<form class="form-inline">
+							<div class="form-group mb-2">
+								<input
+									type="text"
+									readonly
+									class="form-control-plaintext"
+									value="Enter your name here:"
+								/>
+							</div>
+							<div class="form-group mx-sm-3 mb-2">
+								<input
+									id="initials"
+									type="text"
+									class="form-control"
+                                    placeholder="John Doe"  
+								/>
+							</div>
+						</form>
+						<!-- submission button here -->
+						<button id="submitscore" type="submit" class="btn btn-primary mb-2">
+							Submit
+						</button>
+                    </div>
+                    <!-- score history div-->
+					<div id="scorehistory" class="mt4 mb-4 px-3 py-3 collapse">
+						<h4>Highscores</h4>
+						<ol id="scorelist" class="list-group"></ol>
+						<button id="goBack" type="submit" class="btn btn-primary mb-2 mt-3">
+							Go Back
+						</button>
+						<button
+							id="clearHistory"
+							type="submit"
+							class="btn btn-primary mb-2 mt-3"
+						>
+							Clear History
+						</button>
+					</div>
                 </div>
+                <!-- column 3 -->
+                <div class="col-md-3"></div>
             </div>
+            <!-- End of main content row -->
         </div>
-            <script
-                src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-                crossorigin="anonymous"
-            ></script>
-            <script
-                src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                crossorigin="anonymous"
-            ></script>
-            <script
-                src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-                integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-                crossorigin="anonymous"
-            ></script>
-            <script src="script.js"></script>
+        <!--Scripts here-->
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"
+        ></script>
+        <script src="script.js"></script>
     </body>
 </html>

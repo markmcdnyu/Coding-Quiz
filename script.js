@@ -1,22 +1,34 @@
 //Select the elements
-var navTimer = document.querySelector("#time");
-var answerA = document.querySelector("#answerA");
-var answerB = document.querySelector("#answerB");
-var answerC = document.querySelector("#answerC");
-var answerD = document.querySelector("#answerD");
-var startButton = document.getElementById("startBtn");
-var beginDiv = document.querySelector("#instructions");
-var questionDiv = document.querySelector("#question");
-var quizCard = document.querySelector("#quizCard");
+var navTimer = document.querySelector("#time"); //check
+var navScore = document.querySelector("#score"); //check 
+var startButton = document.getElementById("startBtn"); //check
+var answerA = document.querySelector("#answerA");   //check
+var answerB = document.querySelector("#answerB"); //check
+var answerC = document.querySelector("#answerC"); //check
+var answerD = document.querySelector("#answerD"); //check
+var beginDiv = document.querySelector("#instructions"); //check
+var questionDiv = document.querySelector("#question"); //check
+var quizCard = document.querySelector("#quizCard"); //check
+var quizscoreDiv = document.querySelector("#scorecard");  
+var finalScore = document.querySelector("#finalScore");
+var initialsInput = document.getElementById("initials");
+var submitScorebtn = document.getElementById("submitscore");
+var scoreHistoryDiv = document.querySelector("#scorehistory");
+var finalScorelist = document.querySelector("#scorelist");
+var goBackbtn = document.getElementById("goBack");
+var clearHistorybtn = document.getElementById("clearHistory");
 
 
 //Declare variables
 
 //Will use this to track the questions left in the quiz
-var round = 0;
+var i = 0;
 
 //Track the seconds remaining 
 var secondsRemain = 90;
+
+//Score at 0
+var score = 0;
 
 //Used to store the seconds remaining in the quiz
 var interval = 0;
@@ -27,7 +39,7 @@ var activeDiv = beginDiv;
 // Quiz questions and answers. Trying an array for everything.
 var questions = [
     [
-        "Question 1:  What is the corect top-line of an HTML file?",
+        "Question 1:  What is the correct top-line of an HTML file?",
         "A. <!DOCUMENTTYPE html>",
         "B. <!DOCTYPE html>",
         "C. <!DOCTYPE CSS>",
@@ -61,40 +73,78 @@ var questions = [
         "B. function = myFunction()",
         "C. function myFunction()",
         "D. myFunction = function",
-        "B. function myFunction()",
+        "C. function myFunction()",
     ]
 ];
 
+retain();
+
 //Need a function to show the questions
-function showQuestion(round) {
-    questionDiv.innerHTML = questions [round][0];
-    answerA.value = questions[round][1];
-    answerB.value = questions[round][2];
-    answerC.value = questions[round][3];
-    answerD.value = questions[round][4];
+function showQuestion(index) {
+    questionDiv.innerHTML = questions [index][0];
+    answerA.value = questions[index][1];
+    answerB.value = questions[index][2];
+    answerC.value = questions[index][3];
+    answerD.value = questions[index][4];
 }
 
 //Need a check answer function 
-function checkAnswers (round) {
-    var select = "";
-    if (round === 1) {
-        select = answerA;
-    } else if (round === 2) {
-        select = answerB;
-    } else if (round === 3) {
-        select = answerC;  
+function checkAnswers(index) {
+    var selected = "";
+    if (index === 1) {
+        selected = answerA;
+    } else if (index === 2) {
+        selected = answerB;
+    } else if (index === 3) {
+        selected = answerC;  
     } else {
-        select = answerD;
+        selected = answerD;
     }
-    console.log(select);
-    if (select.value === questions[round][5]) {
-        //score
+
+  
+    if (selected.value === questions[i][5]) {
+        alert("Correct!");
+        score += 20;
+        navScore.textContent = score;
     } else {
+        alert("Sorry. Wrong Answer. Try again.");
         secondsRemain = secondsRemain -10;
+        navTimer.innerHTML = secondsRemain;
     }
-    round++;
-    showQuestion(round); 
-    //end showquestion after everything is finished 
+
+    if (i === 4) {
+		clearInterval(interval);
+		quizCard.classList.toggle("collapse");
+		quizscoreDiv.classList.toggle("collapse");
+		activeDiv = quizscoreDiv;
+		finalScore.innerHTML = secondsLeft;
+		timerNav.innerHTML = secondsLeft;
+	} else {
+		i = i + 1;
+		showQuestion(i);
+	}
+}
+
+function listofscores() {
+	finalScorelist.innerHTML = "";
+	for (var i = 0; i < scores.length; i++) {
+		var li = document.createElement("li");
+		li.textContent = i + 1 + " - " + scores[i];
+		li.setAttribute("class", "list-group-item");
+		finalScorelist.appendChild(li);
+	}
+}
+
+
+function scoreHistory() {
+	var initials = initialsInput.value;
+	var scoreEntry = initials + " - " + secondsLeft;
+	scores.push(scoreEntry);
+	localStorage.setItem("scores", JSON.stringify(scores));
+	quizscoreDiv.classList.toggle("collapse");
+	scoreHistoryDiv.classList.toggle("collapse");
+	activeDiv = scoreHistoryDiv;
+	listofscores();
 }
 
 //Need a function to start the quiz and start the timer countdown in the nav bar
@@ -113,7 +163,29 @@ function beginQuiz(){
     beginDiv.classList.toggle("collapse");
     quizCard.classList.toggle("collapse");
     activeDiv = quizCard;
-    showQuestion(round);
+    showQuestion(i);
+}
+
+function goBack() {
+	scoreHistoryDiv.classList.toggle("collapse");
+	introDiv.classList.toggle("collapse");
+	activeDiv = introDiv;
+	secondsLeft = 75;
+	timerNav.innerHTML = secondsLeft;
+	i = 0;
+}
+
+function clearHistory() {
+	scores = [];
+	localStorage.setItem("scores", JSON.stringify(scores));
+	listofscores();
+}
+
+function retain() {
+	var storedScores = JSON.parse(localStorage.getItem("scores"));
+	if (storedScores !== null) {
+		scores = storedScores;
+	}
 }
 
 
@@ -134,3 +206,12 @@ answerC.addEventListener("click", function () {
 answerD.addEventListener("click", function () {
     checkAnswers(4);
 });
+
+// This adds an event listener to map the scoreHistory() function to the submit score button once the button is clicked.
+submitScorebtn.addEventListener("click", scoreHistory);
+
+// This adds an event listener to map the goBack() function to the go back button once the button is clicked.
+goBackbtn.addEventListener("click", goBack);
+
+// This adds an event listener to map the clearHistory() function to the clear history button once the button is clicked.
+clearHistorybtn.addEventListener("click", clearHistory);
