@@ -1,42 +1,44 @@
 //Select the elements
-var navTimer = document.querySelector("#time"); //check
-var navScore = document.querySelector("#score"); //check 
-var startButton = document.getElementById("startBtn"); //check
-var answerA = document.querySelector("#answerA");   //check
-var answerB = document.querySelector("#answerB"); //check
-var answerC = document.querySelector("#answerC"); //check
-var answerD = document.querySelector("#answerD"); //check
-var beginDiv = document.querySelector("#instructions"); //check
-var questionDiv = document.querySelector("#question"); //check
-var quizCard = document.querySelector("#quizCard"); //check
+var navTimer = document.querySelector("#time"); 
+var navScore = document.querySelector("#score"); 
+var startButton = document.getElementById("startBtn"); 
+var answerA = document.querySelector("#answerA");   
+var answerB = document.querySelector("#answerB"); 
+var answerC = document.querySelector("#answerC"); 
+var answerD = document.querySelector("#answerD"); 
+var beginDiv = document.querySelector("#instructions"); 
+var questionDiv = document.querySelector("#question"); 
+var quizCard = document.querySelector("#quizCard"); 
 var quizscoreDiv = document.querySelector("#scorecard");  
 var finalScore = document.querySelector("#finalScore");
-var initialsInput = document.getElementById("initials");
+var nameInput = document.getElementById("name");
 var submitScorebtn = document.getElementById("submitscore");
 var scoreHistoryDiv = document.querySelector("#scorehistory");
 var finalScorelist = document.querySelector("#scorelist");
-var goBackbtn = document.getElementById("goBack");
-var clearHistorybtn = document.getElementById("clearHistory");
+var endQuizbtn = document.getElementById("endQuiz");
 
 
 //Declare variables
 
-//Will use this to track the questions left in the quiz
+//Will use this to track the number of questions left in the quiz
 var i = 0;
 
 //Track the seconds remaining 
 var secondsRemain = 90;
 
-//Score at 0
+//Start score at 0
 var score = 0;
 
 //Used to store the seconds remaining in the quiz
 var interval = 0;
 
+//Need an empty scores array to store the scores into
+var scores = [];
+
 //track the card the user is on
 var activeDiv = beginDiv; 
 
-// Quiz questions and answers. Trying an array for everything.
+// Quiz questions and answers. Trying an array for everything. Some, but not all, questions and answers were taken from w3schools https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 var questions = [
     [
         "Question 1:  What is the correct top-line of an HTML file?",
@@ -77,7 +79,9 @@ var questions = [
     ]
 ];
 
-retain();
+
+//function used to store scores
+keepScores();
 
 //Need a function to show the questions
 function showQuestion(index) {
@@ -101,7 +105,7 @@ function checkAnswers(index) {
         selected = answerD;
     }
 
-  
+        //Since I put the correct answer in the 5th index spot, check to see if that matches, then alert the user if they are right or wrong. NOt a fan of alert() but might use it
     if (selected.value === questions[i][5]) {
         alert("Correct!");
         score += 20;
@@ -111,13 +115,13 @@ function checkAnswers(index) {
         secondsRemain = secondsRemain -10;
         navTimer.innerHTML = secondsRemain;
     }
-
+        //Track and see what question the user is on. If they are in the 4th array position, it is the last question, otherwise, increment by one and go again
     if (i === 4) {
 		clearInterval(interval);
 		quizCard.classList.toggle("collapse");
 		quizscoreDiv.classList.toggle("collapse");
 		activeDiv = quizscoreDiv;
-		finalScore.innerHTML = secondsLeft;
+		finalScore.innerHTML = score;
 		timerNav.innerHTML = secondsLeft;
 	} else {
 		i = i + 1;
@@ -125,6 +129,7 @@ function checkAnswers(index) {
 	}
 }
 
+//Need a loop and to use appendChild for the tracking and local storage of the users names and scores
 function listofscores() {
 	finalScorelist.innerHTML = "";
 	for (var i = 0; i < scores.length; i++) {
@@ -136,9 +141,16 @@ function listofscores() {
 }
 
 
+
+// Going to need a loop or if/else logic to sort out who's scores would rank above/below each other when stored locally. 
+//Not sure how to do this???
+
+
+
+//Need a function to input the names and scores 
 function scoreHistory() {
-	var initials = initialsInput.value;
-	var scoreEntry = initials + " - " + secondsLeft;
+	var name = nameInput.value;
+	var scoreEntry = name + " - " + score;
 	scores.push(scoreEntry);
 	localStorage.setItem("scores", JSON.stringify(scores));
 	quizscoreDiv.classList.toggle("collapse");
@@ -166,28 +178,27 @@ function beginQuiz(){
     showQuestion(i);
 }
 
-function goBack() {
+
+//Need a function to end the whole quiz
+function endQuiz() {
 	scoreHistoryDiv.classList.toggle("collapse");
 	introDiv.classList.toggle("collapse");
-	activeDiv = introDiv;
-	secondsLeft = 75;
-	timerNav.innerHTML = secondsLeft;
+	activeDiv = beginDiv;
+	secondsRemain = 90;
+	timerNav.innerHTML = secondsRemain;
 	i = 0;
 }
 
-function clearHistory() {
-	scores = [];
-	localStorage.setItem("scores", JSON.stringify(scores));
-	listofscores();
-}
-
-function retain() {
+//Need a function to store and track the scores -- pretty sure to use getItem?? and localstorage??
+function keepScores() {
 	var storedScores = JSON.parse(localStorage.getItem("scores"));
 	if (storedScores !== null) {
 		scores = storedScores;
 	}
 }
 
+
+//Need a good number of eventListeners here!!!!!! 
 
 
 //Need an eventListener for the Start button click
@@ -207,11 +218,8 @@ answerD.addEventListener("click", function () {
     checkAnswers(4);
 });
 
-// This adds an event listener to map the scoreHistory() function to the submit score button once the button is clicked.
+// Add an eventlistener to map the scoreHistory() function to the Next button
 submitScorebtn.addEventListener("click", scoreHistory);
 
-// This adds an event listener to map the goBack() function to the go back button once the button is clicked.
-goBackbtn.addEventListener("click", goBack);
-
-// This adds an event listener to map the clearHistory() function to the clear history button once the button is clicked.
-clearHistorybtn.addEventListener("click", clearHistory);
+//Add an eventlistener to map the endQuiz() function
+endQuizbtn.addEventListener("click", endQuiz);

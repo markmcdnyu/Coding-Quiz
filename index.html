@@ -9,18 +9,18 @@
         <!-- Reset the CSS-->
         <link rel="stylesheet" href="assets/reset.css">
 
-        <!-- Add in Bootstrap-->
+        <!-- Added in Bootstrap-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
         crossorigin="anonymous">
 
-        <!-- Add in the CSS file-->
+        <!-- Added the CSS file-->
         <link rel="stylesheet" href="assets/style.css">
     </head>
 
-    <!-- Body HTML begins here-->
+    <!-- Body of the HTML begins here-->
     <body>
-        <!-- Navbar as a heading -->
+        <!-- Navbar of the page that will include the time and the score-->
         <nav class="nav justify-content-around navbar-light" style="background-color: #e3f2fd;">
             <div class="form-inline">
                 <div class="text-dark pr-2">Timeleft:</div>
@@ -30,18 +30,16 @@
                 Score: <span id="score" class="navbar-brand mb-0 h1">0</span>
             </div>
         </nav>
-        <!--Main container-->
+        <!--Main container that will include: instructions, transition from the beginning of the quiz, Questions + Answers, and finally the score card -->
         <div class="container">
-            <!-- Give a row of space -->
+            <!-- Some space -->
             <div class="row mt-10"></div>
             
 			<!-- Start of main content row -->
 			<div class="row">
-				<!-- column 1 -->
 				<div class="col-md-2"></div>
-				<!-- column 2-->
 				<div class="col-md-8">
-					<!-- intro div -->
+					<!-- Instructions div -->
                     <div id="instructions" class="mt-4 mb-4 px-3 py-3">
                         <h2>Coding Quiz: Developers</h2>
                     
@@ -50,21 +48,18 @@
                         With every correct answer, you will move to the next question.
                         With every wrong answer, <strong>10 seconds will be duducted</strong> from the time bank.</p>
                         <p>Take a breathe, then click <strong>'Start Quiz'</strong> to begin. Good luck.
-                        <button id="startBtn" type="button" class="btn btn-primary">
-                            Start Quiz
-                        </button>
+                        
+                        <button id="startBtn" type="button" class="btn btn-primary">Start Quiz</button>
                         </p>
                     </div>
 
-                    <!-- Content of the quiz and answers section-->
+                    <!-- Placeholder for the quizcard: will contain both questions and answers, which JS will reference-->
                     <div id="quizCard" class="collapse px-3 py-3">
-                        <!-- Row for the question to be inserted-->
+                        <!-- place for the questions to be inserted-->
                         <div class="row">
-                            <h3 id="question">
-                                Placeholder for questions.
-                            </h3>
+                            <h3 id="question">Placeholder for questions.</h3>
                         </div>
-                        <!-- Here is the place for the answers to be inserted-->
+                        <!-- place for the answers to be inserted-->
                         <div class="row" id="answers">
                             <ul>
                                 <li>
@@ -98,82 +93,50 @@
                             </ul>
                         </div>
                     </div>
-                    <!--Quiz is finished score card-->
+
+                    <!--"Quiz is finished" score card-->
                     <div id=scorecard class="mt-4 mb-4 px-3 px-y collapse">
                         <h3>FINISHED!</h3>
-                        <!-- score will be auto populated here -->
+                        <p>To complete your quiz, fill in your name and click 'Next'</p>
+                        
+                        <!-- Place for the score to populate-->
 						<form class="form-inline">
 							<div class="form-group mb-2">
-								<input
-									type="text"
-									readonly
-									class="form-control-plaintext"
-									value="Your final score is:"
-								/>
+								<input type="text"readonly class="form-control-plaintext" value="Your final score is:"/>
 							</div>
 							<div class="form-group mx-sm-3 mb-2" id="finalScore"></div>
 						</form>
-						<!-- initials entered here -->
+                        
+                        <!-- A form for the user to enter name -->
 						<form class="form-inline">
 							<div class="form-group mb-2">
-								<input
-									type="text"
-									readonly
-									class="form-control-plaintext"
-									value="Enter your name here:"
-								/>
+								<input type="text" readonly class="form-control-plaintext" value="Enter your name here:"/>
 							</div>
 							<div class="form-group mx-sm-3 mb-2">
-								<input
-									id="initials"
-									type="text"
-									class="form-control"
-                                    placeholder="John Doe"  
-								/>
+								<input id="name" type="text" class="form-control" placeholder="John Doe"/>
 							</div>
 						</form>
-						<!-- submission button here -->
-						<button id="submitscore" type="submit" class="btn btn-primary mb-2">
-							Submit
-						</button>
+                        
+                        <!-- Button: next/submit. Using the word "next" here for the score tracking-->
+						<button id="submitscore" type="submit" class="btn btn-primary mb-2">Next</button>
                     </div>
-                    <!-- score history div-->
-					<div id="scorehistory" class="mt4 mb-4 px-3 py-3 collapse">
-						<h4>Highscores</h4>
-						<ol id="scorelist" class="list-group"></ol>
-						<button id="goBack" type="submit" class="btn btn-primary mb-2 mt-3">
-							Go Back
-						</button>
-						<button
-							id="clearHistory"
-							type="submit"
-							class="btn btn-primary mb-2 mt-3"
-						>
-							Clear History
-						</button>
-					</div>
+
+                    <!-- List the score history and end the quiz-->
+                    <section>
+                        <div id="scorehistory" class="mt4 mb-4 px-3 py-3 collapse">
+                            <h4>Highscores</h4>
+                            <ol id="scorelist" class="list-group"></ol>
+                            <button id="endQuiz" type="submit" class="btn btn-primary mb-2 mt-3">End</button>
+                        </div>
+                    </section>
                 </div>
-                <!-- column 3 -->
-                <div class="col-md-3"></div>
             </div>
-            <!-- End of main content row -->
         </div>
-        <!--Scripts here-->
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"
-        ></script>
+        
+        <!--Inputting scripts here: do not know if I will need all of them, except my JS file-->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="assets/script.js"></script>
     </body>
 </html>
